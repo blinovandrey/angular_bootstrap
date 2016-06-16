@@ -29,7 +29,7 @@ class CustomerSearchTerm
   	@where_clause << " OR #{case_insensitive_search(:email)}"
   	@where_args[:email] = search_term
   	@order = "lower(email) = " +
-	  ActiveRecord::Base.connection.quote(search_term) +
+	  search_term +
 	  " desc, last_name asc"
 	end
 
