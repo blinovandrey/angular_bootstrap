@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   get 'customers/index'
 
   devise_for :users
-  resources :customer, only: [:index]
+  resources :customers, only: [:index]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
