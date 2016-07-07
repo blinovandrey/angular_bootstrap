@@ -5,6 +5,12 @@ gem 'bower-rails'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 gem 'coffee-script-source', '1.8.0'
 gem 'faker'
+gem "angular-rails-templates"
+gem "sprockets", "~> 2.0"
+
+group :development, :test do
+  gem "rspec-rails", '~> 3.0'
+end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
