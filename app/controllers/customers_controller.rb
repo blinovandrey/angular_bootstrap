@@ -10,20 +10,20 @@ class CustomersController < ApplicationController
 	  customer_search_term.where_args).
 	  order(customer_search_term.order).
 	  offset(PAGE_SIZE * @page).limit(PAGE_SIZE)
-	else
-	  @customers = []
-	end
+  	else
+  	  @customers = []
+	  end
 
-	respond_to do |format|
-	  format.html {}
-	  format.json { render json: @customers }
-	end
+  	respond_to do |format|
+  	  format.html {}
+  	  format.json { render json: @customers }
+  	end
   end
 
   def show
-	customer = Customer.find(params[:id])
-	respond_to do |format|
-	  format.json { render json: customer }
-	end
+  	customer_detail = CustomerDetail.find(params[:id])
+  	respond_to do |format|
+  	  format.json { render json: customer_detail }
+  	end
   end
 end

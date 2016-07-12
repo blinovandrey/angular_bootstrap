@@ -11,10 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160615183256) do
+ActiveRecord::Schema.define(version: 20160712185050) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "addresses", force: :cascade do |t|
+    t.string  "street",   null: false
+    t.string  "city",     null: false
+    t.integer "state_id", null: false
+    t.string  "zipcode",  null: false
+  end
 
   create_table "customers", force: :cascade do |t|
     t.string   "first_name", null: false
@@ -27,6 +34,22 @@ ActiveRecord::Schema.define(version: 20160615183256) do
 
   add_index "customers", ["email"], name: "index_customers_on_email", unique: true, using: :btree
   add_index "customers", ["username"], name: "index_customers_on_username", unique: true, using: :btree
+
+  create_table "customers_billing_addresses", force: :cascade do |t|
+    t.integer "customer_id", null: false
+    t.integer "address_id",  null: false
+  end
+
+  create_table "customers_shipping_addresses", force: :cascade do |t|
+    t.integer "customer_id",                 null: false
+    t.integer "address_id",                  null: false
+    t.boolean "primary",     default: false, null: false
+  end
+
+  create_table "states", force: :cascade do |t|
+    t.string "code", null: false
+    t.string "name", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
